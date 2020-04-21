@@ -31,4 +31,11 @@ namespace WebApplication1
 
 	}
 
+	public class Contact
+	{
+		public long id { get; set; }
+		public long PersonId { get; set; }
+		public long ContactId { get; set; }
+	}
+
 }

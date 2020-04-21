@@ -36,5 +36,11 @@ namespace WebApplication1
 			var result = _database.SpecificRelationsData(_dbFactory, request.PersonID);
 			return result;
 		}
+
+		public List<string> Get(ContactRequest request)
+		{
+			var result = _database.ContactData(_dbFactory, request.PersonID);
+			return result;
+		}
 	}
 }
