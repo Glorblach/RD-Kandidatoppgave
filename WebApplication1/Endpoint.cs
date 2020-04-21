@@ -25,19 +25,19 @@ namespace WebApplication1
 		// Relation endpoint
 		// If we have multi-route for the same class, it seems we need to check on an invalid ID
 		// so create a new request for specific relation
-		public List<string> Get(RelationRequest request)
+		public List<Relation> Get(RelationRequest request)
 		{
 			var result = _database.RelationsData(_dbFactory);
 			return result;
 		}
 
-		public List<string> Get(SpecificRelationRequest request)
+		public List<Relation> Get(SpecificRelationRequest request)
 		{
 			var result = _database.SpecificRelationsData(_dbFactory, request.PersonID);
 			return result;
 		}
 
-		public List<string> Get(ContactRequest request)
+		public List<ContactList> Get(ContactRequest request)
 		{
 			var result = _database.ContactData(_dbFactory, request.PersonID);
 			return result;

@@ -26,5 +26,11 @@ I might be missing something, but having one entry point for multiple routes (on
 Verify input and show appropriate error pages. Making sure data is not leaking to the client
 
 5 - Beskrivelse av commit(s)
-Uhm, not sure what to say. Feature commits, first commit was for Oppgave 1, second commit was for Oppgave 2
+First commits to get data to the browser
+
+Third commit to add this note file
+
+Fourth commit to change from string based to json (object returns) to try to make it pretty in PostMan
+
+
 

@@ -11,11 +11,11 @@ namespace WebApplication1
 
 		List<string> ExampleData(IDbConnectionFactory dbFactory);
 
-		List<string> RelationsData(IDbConnectionFactory dbFactory);
+		List<Relation> RelationsData(IDbConnectionFactory dbFactory);
 
-		List<string> SpecificRelationsData(IDbConnectionFactory dbFactory, long personID);
+		List<Relation> SpecificRelationsData(IDbConnectionFactory dbFactory, long personID);
 
-		List<string> ContactData(IDbConnectionFactory dbFactory, long personID);
+		List<ContactList> ContactData(IDbConnectionFactory dbFactory, long personID);
 	}
 
 	public class Database : IDatabase
@@ -80,14 +80,14 @@ namespace WebApplication1
 				List<string> ret = new List<string>();
 				foreach (var p in result)
 				{
-					ret.Add(p.ToString());
+					ret.Add(p.name);
 				}
 
 				return ret;
 			}
 		}
 
-		public List<string> RelationsData(IDbConnectionFactory dbFactory)
+		public List<Relation> RelationsData(IDbConnectionFactory dbFactory)
 		{
 			using (var db = dbFactory.Open())
 			{
@@ -97,16 +97,19 @@ namespace WebApplication1
 					.Join<Enterprises>((pe, ent) => pe.EnterpriseID == ent.id)
 					);
 
-				List<string> ret = new List<string>();
-				foreach (var ep in query)
+				List<Relation> ret = new List<Relation>();
+				foreach(var ep in query)
 				{
-					ret.Add($"{ep.Item2.name} - {ep.Item3.name}");
+					Relation rel = new Relation();
+					rel.person = ep.Item2;
+					rel.enterprise = ep.Item3;
+					ret.Add(rel);
 				}
 				return ret;
 			}
 		}
 
-		public List<string> SpecificRelationsData(IDbConnectionFactory dbFactory, long personID)
+		public List<Relation> SpecificRelationsData(IDbConnectionFactory dbFactory, long personID)
 		{
 			using (var db = dbFactory.Open())
 			{
@@ -116,17 +119,20 @@ namespace WebApplication1
 					.Where<People>(p => p.id == personID)
 					);
 
-				List<string> ret = new List<string>();
+				List<Relation> ret = new List<Relation>();
 				foreach (var ep in query)
 				{
-					ret.Add($"{ep.Item2.name} - {ep.Item3.name}");
+					Relation rel = new Relation();
+					rel.enterprise = ep.Item3;
+					rel.person = ep.Item2;
+					ret.Add(rel);
 				}
 				return ret;
 			}
 		}
 
 
-		public List<string> ContactData(IDbConnectionFactory dbFactory, long personID)
+		public List<ContactList> ContactData(IDbConnectionFactory dbFactory, long personID)
 		{
 			using (var db = dbFactory.Open())
 			{
@@ -138,19 +144,19 @@ namespace WebApplication1
 					.Where<Contact>(c => c.PersonId == personID)
 					);
 
-				List<string> ret = new List<string>();
 
-				// make sure we found the person we are looking at, and only one
+				List<ContactList> ret = new List<ContactList>();
+				// Make sure we found the person we are looking at, and only one
 				if(mainPerson.Count == 1)
 				{
-					ret.Add($"Contacts for '{mainPerson[0].name}'");
-					int i = 1;
+					ContactList cl = new ContactList();
+					cl.person = mainPerson[0];
+					cl.contacts = new List<People>();
 					foreach (var ep in query)
 					{
-						ret.Add($"Contact {i} - {ep.Item2.name}");
-						i++;
+						cl.contacts.Add(ep.Item2);
 					}
-
+					ret.Add(cl);
 				}
 				return ret;
 			}
