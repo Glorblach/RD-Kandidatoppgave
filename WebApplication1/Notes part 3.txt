@@ -1,0 +1,30 @@
+0 URLs
+	http://localhost:61019/example (test query change)
+	http://localhost:61019/relation (debug to figure out how it works)
+	http://localhost:61019/relation/3  (1, 2 and 3 have data)
+	http://localhost:61019/contact/1 (1, 2 and 7 have data)
+
+
+1 - Hvordan ville du løst å legge til data?
+
+Manual: Post calls, using a web form (with lookups so we are not using ID's. Validate data (missing data, relations not found etc) before adding to the backend.
+
+Machine: read from source (file, db etc), validate data and relations (so not just check on first name/laste name for people), before adding to backend (lots of data => Bulk inserter (Might be sqlserver specific))
+
+2 - Hvordan kunne tabellene vært opprettet/dataene hentet ut på en alternativ måte?
+DBProject for making/editing tables, procs, views etc
+We made our own code generator for db access since entityframework/linq died in flames when hitting the tax databases.
+
+3 - Videre forbedring av koden?
+
+The relations would be better to pick out using views (could also pull out contact tree for instance, depending on usage, ref: SQLServer cte)
+I might be missing something, but having one entry point for multiple routes (one Get per request type) is iffy when you want to list all or specific.
+	We had one entry for "get all", and then one for a query with data (multiple if there were specific queries or if some of the input could not be null)
+
+
+4 - Feilhåndtering
+Verify input and show appropriate error pages. Making sure data is not leaking to the client
+
+5 - Beskrivelse av commit(s)
+Uhm, not sure what to say. Feature commits, first commit was for Oppgave 1, second commit was for Oppgave 2
+
