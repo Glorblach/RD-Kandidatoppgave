@@ -2,8 +2,9 @@
 
 namespace WebApplication1
 {
-    [Route("/example", "GET")]
-    public class DocumentRequest
-    {
-    }
+	[Route("/example", "GET")]
+	public class DocumentRequest
+	{
+	}
+
 }
