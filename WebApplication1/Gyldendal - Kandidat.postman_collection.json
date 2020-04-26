@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "a655e06d-92cf-403d-bf09-566151127323",
+		"name": "Gyldendal - Kandidat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bd88c16-881d-4faf-8746-9f42958d0257",
+						"exec": [
+							"var template = `\r",
+							"    <style type=\"text/css\">\r",
+							"        .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"        .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"        .tftable tr {background-color:#ffffff;}\r",
+							"        .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"        .tftable tr:hover {background-color:#e0ffff;}\r",
+							"    </style>\r",
+							"\r",
+							"    <table class=\"tftable\" border=\"1\">\r",
+							"        <tr>\r",
+							"            <th>Person</th>\r",
+							"        </tr>\r",
+							"        {{#each response}}\r",
+							"            <tr id=row_{{@key}}>\r",
+							"                <td id={{@key}}>{{person.name}}</td>\r",
+							"            </tr>\r",
+							"            \r",
+							"            <table class=\"tftable\" border=\"3\">\r",
+							"                <th>Contact</th>\r",
+							"            {{#each contacts}}\r",
+							"                <tr id=row_{{@key}}>\r",
+							"                    <td id={{@key}}>{{name}}</td>\r",
+							"                </tr>\r",
+							"            {{/each}}\r",
+							"            </table>\r",
+							"            \r",
+							"        {{/each}}\r",
+							"    </table>\r",
+							"    \r",
+							"\r",
+							"`;\r",
+							"\r",
+							"pm.visualizer.set(template, {\r",
+							"    response: pm.response.json()\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:61019/contact/7?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61019",
+					"path": [
+						"contact",
+						"7"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Example",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8fb463a0-ce61-4a3e-80f6-ee20375412e1",
+						"exec": [
+							"var template = `\r",
+							"    <style type=\"text/css\">\r",
+							"        .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"        .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"        .tftable tr {background-color:#ffffff;}\r",
+							"        .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"        .tftable tr:hover {background-color:#e0ffff;}\r",
+							"    </style>\r",
+							"    \r",
+							"    <table class=\"tftable\" border=\"1\">\r",
+							"        <tr>\r",
+							"            <th>Name</th>\r",
+							"        </tr>\r",
+							"        \r",
+							"        {{#each response}}\r",
+							"            <tr id=row_{{@key}} onClick=\"handleClick(this.id)\">\r",
+							"                <td id={{@key}}>{{@this}}</td>\r",
+							"            </tr>\r",
+							"        {{/each}}\r",
+							"    </table>\r",
+							"`;\r",
+							"\r",
+							"pm.visualizer.set(template, {\r",
+							"    response: pm.response.json()\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:61019/Example?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61019",
+					"path": [
+						"Example"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relation Individual",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0bdc3c90-330e-4c3c-9be5-fee50ad3f80d",
+						"exec": [
+							"var template = `\r",
+							"    <style type=\"text/css\">\r",
+							"        .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"        .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"        .tftable tr {background-color:#ffffff;}\r",
+							"        .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"        .tftable tr:hover {background-color:#e0ffff;}\r",
+							"    </style>\r",
+							"    \r",
+							"    <table class=\"tftable\" border=\"1\">\r",
+							"        <tr>\r",
+							"            <th>Enterprise</th>\r",
+							"            <th>Person</th>\r",
+							"        </tr>\r",
+							"        \r",
+							"        {{#each response}}\r",
+							"            <tr id=row_{{@key}} onClick=\"handleClick(this.id)\">\r",
+							"                <td id={{@key}}>{{enterprise.name}}</td>\r",
+							"                <td>{{person.name}}</td>\r",
+							"            </tr>\r",
+							"        {{/each}}\r",
+							"    </table>\r",
+							"`;\r",
+							"\r",
+							"pm.visualizer.set(template, {\r",
+							"    response: pm.response.json()\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:61019/relation/3?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61019",
+					"path": [
+						"relation",
+						"3"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relation - All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "354a0a2e-4586-44e3-948b-80249d7e4e60",
+						"exec": [
+							"var template = `\r",
+							"    <style type=\"text/css\">\r",
+							"        .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"        .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"        .tftable tr {background-color:#ffffff;}\r",
+							"        .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"        .tftable tr:hover {background-color:#e0ffff;}\r",
+							"    </style>\r",
+							"    \r",
+							"    <table class=\"tftable\" border=\"1\">\r",
+							"        <tr>\r",
+							"            <th>Enterprise</th>\r",
+							"            <th>Person</th>\r",
+							"        </tr>\r",
+							"        \r",
+							"        {{#each response}}\r",
+							"            <tr id=row_{{@key}} onClick=\"handleClick(this.id)\">\r",
+							"                <td id={{@key}}>{{enterprise.name}}</td>\r",
+							"                <td>{{person.name}}</td>\r",
+							"            </tr>\r",
+							"        {{/each}}\r",
+							"    </table>\r",
+							"`;\r",
+							"\r",
+							"pm.visualizer.set(template, {\r",
+							"    response: pm.response.json()\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:61019/relation?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61019",
+					"path": [
+						"relation"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

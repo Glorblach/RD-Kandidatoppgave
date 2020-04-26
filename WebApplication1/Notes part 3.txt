@@ -14,23 +14,25 @@ Machine: read from source (file, db etc), validate data and relations (so not ju
 2 - Hvordan kunne tabellene vært opprettet/dataene hentet ut på en alternativ måte?
 DBProject for making/editing tables, procs, views etc
 We made our own code generator for db access since entityframework/linq died in flames when hitting the tax databases.
+Only use procs for getting and inserting data (for user validation/permission in proc, in addition to having it in code)
 
 3 - Videre forbedring av koden?
 
 The relations would be better to pick out using views (could also pull out contact tree for instance, depending on usage, ref: SQLServer cte)
 I might be missing something, but having one entry point for multiple routes (one Get per request type) is iffy when you want to list all or specific.
 	We had one entry for "get all", and then one for a query with data (multiple if there were specific queries or if some of the input could not be null)
-
+	Might have to add/use MVC for that bit.
+Change return calls to the MVC.ActionResult (OK, Error, Failure and Warning (If memory serves, last three needs to be of the "roll your own" variety))
 
 4 - Feilhåndtering
-Verify input and show appropriate error pages. Making sure data is not leaking to the client
+Verify input and show appropriate error pages. Making sure data is not leaking to the client, log to backend based on level.
 
 5 - Beskrivelse av commit(s)
-First commits to get data to the browser
+First two commits to get data to the browser
 
 Third commit to add this note file
 
 Fourth commit to change from string based to json (object returns) to try to make it pretty in PostMan
 
-
+Fifth commit to add the Postman visualize bit (just tables)
 
